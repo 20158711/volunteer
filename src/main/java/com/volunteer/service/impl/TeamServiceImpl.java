@@ -16,7 +16,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public Team findById(Long id) {
-        return teamDao.getOne(id);
+        return teamDao.findById(id).get();
     }
 
     @Override

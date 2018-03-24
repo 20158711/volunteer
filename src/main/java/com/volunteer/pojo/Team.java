@@ -1,12 +1,8 @@
 package com.volunteer.pojo;
 
-import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
-
 import javax.persistence.*;
-import java.util.List;
 
-@Data
 @DynamicInsert
 @Entity(name = "team")
 public class Team {
@@ -27,10 +23,64 @@ public class Team {
     @Column(name = "introduce",nullable = false)
     private String introduce;
 
-    @OneToMany(fetch = FetchType.EAGER,targetEntity = Article.class)
-    private List<Article> articleList;
+    public Team() {
+    }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "team")
-    private List<TeamUser>  teamUserList;
+    public Team(String loginName, String teamName, String password, String introduce) {
+        this.loginName = loginName;
+        this.teamName = teamName;
+        this.password = password;
+        this.introduce = introduce;
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", loginName='" + loginName + '\'' +
+                ", teamName='" + teamName + '\'' +
+                ", password='" + password + '\'' +
+                ", introduce='" + introduce + '\'' +
+                '}';
+    }
 }

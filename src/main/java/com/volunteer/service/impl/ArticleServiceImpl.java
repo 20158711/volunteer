@@ -16,7 +16,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article findById(Long id) {
-        return articleDao.getOne(id);
+        return articleDao.findById(id).get();
     }
 
     @Override

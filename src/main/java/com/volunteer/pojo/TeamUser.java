@@ -1,11 +1,9 @@
 package com.volunteer.pojo;
 
-import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import javax.persistence.*;
 
-@Data
 @Entity(name = "team_user")
 @DynamicInsert
 public class TeamUser {
@@ -14,16 +12,64 @@ public class TeamUser {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "team_id")
-    private Team team;
+    @Column(name = "team_id")
+    private Long teamId;
 
     @Column(name = "state")
     @ColumnDefault("0")
     private Integer state;
 
+    public TeamUser() {
+    }
+
+    public TeamUser(Long userId, Long teamId, Integer state) {
+        this.userId = userId;
+        this.teamId = teamId;
+        this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "TeamUser{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", teamId=" + teamId +
+                ", state=" + state +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
 }
